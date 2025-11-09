@@ -1,3 +1,6 @@
+[中文](README.cn.md)  
+site: [GitHub](https://github.com/chhuang-one/c3), [Gitee](https://gitee.com/chhuang-one/c3)
+
 # C/C++ Language Syntax Extension Proposal
 
 ## 1. Background and Objectives
@@ -132,6 +135,8 @@ struct MyClass {
 .optimization3();
 ```
 
+**Note**: In the example above, ownership() is imitating Rust's ownership of memory management. optimization() is imitating compiler's -O option.
+
 **Variable Attribute Support (Key MVVM Feature)**:
 
 ```c++
@@ -229,6 +234,3 @@ The C3 syntax extension proposal presented in this document (where C2 correspond
 4. **Ecosystem Compatibility**: Supports seamless integration with existing C/C++ ecosystems
 
 This concept was formed in October 2025, and the initial version of this document was completed on November 7, 2025. We believe this syntax extension direction will inject new vitality into the C/C++ ecosystem and promote its broader application in modern software development.
-
-
-site: [GitHub](https://github.com/chhuang-one/c3), [Gitee](https://gitee.com/chhuang-one/c3)

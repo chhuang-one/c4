@@ -1,3 +1,6 @@
+[English](README.md)  
+地址: [GitHub](https://github.com/chhuang-one/c3), [Gitee](https://gitee.com/chhuang-one/c3)
+
 # C/C++ 语言语法扩展方案
 
 ## 1. 背景与目标
@@ -132,6 +135,8 @@ struct MyClass {
 .optimization3();
 ```
 
+**注意**：在上面的范例中，ownership() 模仿 Rust 对内存管理的所有权。optimization() 模仿编译器的 -O 选项。
+
 **变量属性支持（MVVM 关键特性）**：
 
 ```c++
@@ -229,6 +234,3 @@ window->setTitle("Hello");
 4. **生态兼容**：支持与现有 C/C++ 生态系统的无缝集成
 
 该构想于 2025 年 10 月形成，并于 2025 年 11 月 7 日完成本文档的初步编写。我们相信，这种语法扩展方向将为 C/C++ 生态系统注入新的活力，推动其在现代软件开发中的更广泛应用。
-
-
-地址: [GitHub](https://github.com/chhuang-one/c3), [Gitee](https://gitee.com/chhuang-one/c3)
