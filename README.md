@@ -1,5 +1,5 @@
 [中文](README.cn.md)  
-site: [GitHub](https://github.com/chhuang-one/c3), [Gitee](https://gitee.com/chhuang-one/c3)
+site: [GitHub Repository](https://github.com/chhuang-one/c3), [Gitee Repository](https://gitee.com/chhuang-one/c3)
 
 # C/C++ Language Syntax Extension Proposal
 
@@ -134,8 +134,6 @@ struct MyClass {
 .ownership()
 .optimization3();
 ```
-
-**Note**: In the example above, ownership() is imitating Rust's ownership of memory management. optimization() is imitating compiler's -O option.
 
 **Variable Attribute Support (Key MVVM Feature)**:
 

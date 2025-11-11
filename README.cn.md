@@ -1,5 +1,5 @@
 [English](README.md)  
-地址: [GitHub](https://github.com/chhuang-one/c3), [Gitee](https://gitee.com/chhuang-one/c3)
+地址: [GitHub 仓库](https://github.com/chhuang-one/c3), [Gitee 仓库](https://gitee.com/chhuang-one/c3)
 
 # C/C++ 语言语法扩展方案
 
@@ -134,8 +134,6 @@ struct MyClass {
 .ownership()
 .optimization3();
 ```
-
-**注意**：在上面的范例中，ownership() 模仿 Rust 对内存管理的所有权。optimization() 模仿编译器的 -O 选项。
 
 **变量属性支持（MVVM 关键特性）**：
 
