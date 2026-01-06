@@ -108,7 +108,9 @@ class Index {
 
 ### 4.1 Core Design Philosophy
 
-We treat language elements such as types, functions, and variables as object instances, using dot syntax to add attributes during declaration. This approach can extend language functionality without adding excessive keywords.
+We treat language elements such as types, functions, and variables as object instances, using dot syntax to add attributes during declaration.
+This approach can extend language functionality without adding excessive keywords.
+Users can control the compiler and even use special declarations to define "keywords" to extend the language.
 
 ### 4.2 Syntax Extension Examples
 
