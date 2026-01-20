@@ -3,24 +3,26 @@
 
 # C/C++ 语言语法扩展方案
 
-## 1 基本设计理念
+## 1. 基本设计理念
 
-我们将类型、函数、变量等语言元素视为对象实例，在声明时使用点语法为其添加属性。
+我们将类型、函数、变量等语言元素视为(编译器的)对象实例，在声明时使用点语法为其添加属性。
 这种方法可以在不增加过多关键字的前提下扩展语言功能。
 用户可以设置类似 UNIX 系统中的 rwx 权限，控制编译器选项，甚至可以使用特殊声明来扩展语言。  
   
 事实上，现代编程语言中的许多关键字都描述了访问权限，例如 mutable、const、public、protected 和 private。
 
-## 2 语法扩展示例
+## 2. 语法扩展示例
 
 **类型声明增强**：
+
+optimization1() 对应于编译器选项 -O1，ownership() 模仿 Rust 的内存管理。
 
 ```c++
 // 方式一：类型名后直接添加属性
 struct MyClass .ownership().permission(rwx).optimization1()
 {
     // 类实现
-	void  doSomething() .public().permission(rwx);
+    void  doSomething() .public().permission(rwx);
 };
 
 // 方式二：多行属性声明
@@ -30,18 +32,31 @@ struct MyClass
   .optimization2()
 {
     // 类实现
-	void  doSomething() .public().permission(rwx);
+    void  doSomething() .public().permission(rwx);
 };
 
 // 方式三：尾部属性声明
 struct MyClass
 {
     // 类实现
-	void  doSomething() .public().permission(rwx);
+    void  doSomething() .public().permission(rwx);
 }
 .ownership()
 .permission(rwx)
 .optimization3();
+```
+
+**特定模块需要特殊的开发规范**
+
+guidelines() 用于指定开发准则。
+当代码不符合开发规范时，编译器会发出警告。  
+如果没有指定开发规范，编译器会使用默认设置发出警告。
+
+```c++
+namespace MyModule .guidelines("MISRA-C:2004")
+{
+    // 实现
+}
 ```
 
 **变量属性支持（MVVM 关键特性）**：
@@ -57,19 +72,19 @@ bool visible
 bool visible .permission(rw).property() {  // mutable
   bool operator=(bool isVisible) {
     notifyPropertyChanged();
-    return this = isVisible;
+    return visible = isVisible;
   }
   bool operator=() {
     notifyPropertyRead();
-    return this;
+    return visible;
   }
 } = true;                                  // 默认可见
 
 
-// 设置值时自动调用 notifyPropertyChanged
+// 设置值时调用 notifyPropertyChanged
 visible = true;
 
-// 读取值时自动调用 notifyPropertyRead
+// 读取值时调用 notifyPropertyRead
 if (visible)
     showMessage("Hello");
 ```
