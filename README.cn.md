@@ -5,7 +5,7 @@
 
 ## 1. 基本设计理念
 
-我们将类型、函数、变量等语言元素视为(编译器的)对象实例，在声明时使用点语法为其添加属性。
+我们将类型、函数、变量等语言元素视为(编译器的)对象实例，在声明时使用点(.)或冒号(:)语法为其添加属性。
 这种方法可以在不增加过多关键字的前提下扩展语言功能。
 用户可以设置类似 UNIX 系统中的 rwx 权限，控制编译器选项，甚至可以使用特殊声明来扩展语言。  
   
@@ -15,27 +15,27 @@
 
 **类型声明增强**：
 
-optimization1() 对应于编译器选项 -O1，ownership() 模仿 Rust 的内存管理。
+optimization(1) 对应于编译器选项 -O1，'ownership' 模仿 Rust 的内存管理。
 
 ```c++
-// 方式一：类型名后直接添加属性
-struct MyClass .ownership().permission(rwx).optimization1()
+// 方式一：类型名后直接添加属性。这里使用冒号(:)语法。
+struct MyClass :ownership:permission(rwx):optimization(1)
 {
     // 类实现
-    void  doSomething() .public().permission(rwx);
+    void  doSomething() :public():permission(rwx);
 };
 
-// 方式二：多行属性声明
+// 方式二：多行属性声明。这里使用点(.)语法。
 struct MyClass
   .ownership()
   .permission(rwx)
-  .optimization2()
+  .optimization(2)
 {
     // 类实现
     void  doSomething() .public().permission(rwx);
 };
 
-// 方式三：尾部属性声明
+// 方式三：尾部属性声明。这里使用点(.)语法。
 struct MyClass
 {
     // 类实现
@@ -43,7 +43,7 @@ struct MyClass
 }
 .ownership()
 .permission(rwx)
-.optimization3();
+.optimization(3);
 ```
 
 **特定模块需要特殊的开发规范**
@@ -53,6 +53,7 @@ guidelines() 用于指定开发准则。
 如果没有指定开发规范，编译器会使用默认设置发出警告。
 
 ```c++
+// 这里使用点(.)语法。
 namespace MyModule .guidelines("MISRA-C:2004")
 {
     // 实现
@@ -62,14 +63,15 @@ namespace MyModule .guidelines("MISRA-C:2004")
 **变量属性支持（MVVM 关键特性）**：
 
 ```c++
-// 方式一：变量名后直接添加属性
+// 方式一：变量名后直接添加属性。这里使用点(.)语法。
 bool visible
   .permission(rw)                          // mutable
+  .property()
   .onGet(notifyPropertyRead)
   .onSet(notifyPropertyChanged) = true;    // 默认可见
 
-// 方式二：
-bool visible .permission(rw).property() {  // mutable
+// 方式二：这里使用冒号(:)语法。
+bool visible :permission(rw):property {    // mutable
   bool operator=(bool isVisible) {
     notifyPropertyChanged();
     return visible = isVisible;
@@ -92,11 +94,13 @@ if (visible)
 **函数属性声明**：
 
 ```c++
-void doMigration(int version) .async() {
+// 这里使用冒号(:)语法。
+void doMigration(int version) :async:permission(rwx) {
     // 函数实现
 }
 
-void doSomething(int action) .permission(rwx) {
+// 这里使用点(.)语法。
+void doSomething(int action)  .async().permission(rwx) {
     // 函数实现
 }
 ```
@@ -108,6 +112,7 @@ void doSomething(int action) .permission(rwx) {
 模仿 Rust 的模块系统，减少关键字数量：
 
 ```c++
+// 这里使用点(.)语法。
 struct MyLib .module() {
     struct MyStruct1;
     struct MyStruct2;
@@ -119,7 +124,8 @@ struct MyLib .module() {
 模仿 Java 的继承机制：
 
 ```c++
-struct Child .extend(Parent).implement(MyInterface) {
+// 这里使用点(.)语法。
+class Child .extend(Parent).implement(MyInterface) {
     // 类实现
 };
 ```

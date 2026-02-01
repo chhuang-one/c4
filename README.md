@@ -5,7 +5,7 @@ site: [GitHub Repository](https://github.com/chhuang-one/c4), [Gitee Repository]
 
 ## 1. Core Design Philosophy
 
-We treat language elements such as types, functions, and variables as (compiler's) object instances, using dot syntax to add attributes during declaration.
+We treat language elements such as types, functions, and variables as (compiler's) object instances, using dot (.) or colon (:) syntax to add attributes during declaration.
 This approach can extend language functionality without adding excessive keywords.
 Users can set permissions similar to rwx permissions in UNIX systems, control the compiler options, and even extend the language using special declarations.  
   
@@ -15,27 +15,27 @@ In fact, many keywords in modern programming languages ​​describe access per
 
 **Enhanced Type Declarations**:
 
-optimization1() corresponds to the compiler option -O1, ownership() imitating Rust's memory management.
+optimization(1) corresponds to the compiler option -O1, 'ownership' imitating Rust's memory management.
 
 ```c++
-// Method 1: Direct attribute addition after type name
-struct MyClass .ownership().permission(rwx).optimization1()
+// Method 1: Direct attribute addition after type name. Using colon (:) syntax here.
+struct MyClass :ownership:permission(rwx):optimization(1)
 {
     // Class implementation
-    void  doSomething() .public().permission(rwx);
+    void  doSomething() :public:permission(rwx);
 };
 
-// Method 2: Multi-line attribute declaration
+// Method 2: Multi-line attribute declaration. Using dot (.) syntax here.
 struct MyClass
   .ownership()
   .permission(rwx)
-  .optimization2()
+  .optimization(2)
 {
     // Class implementation
     void  doSomething() .public().permission(rwx);
 };
 
-// Method 3: Trailing attribute declaration
+// Method 3: Trailing attribute declaration. Using dot (.) syntax here.
 struct MyClass
 {
     // Class implementation
@@ -43,7 +43,7 @@ struct MyClass
 }
 .ownership()
 .permission(rwx)
-.optimization3();
+.optimization(3);
 ```
 
 **Specific modules require special development guidelines**
@@ -53,6 +53,7 @@ The compiler issues a warning when the code does not conform to the development 
 When no development guidelines are specified, the compiler issues warnings using the default setting.
 
 ```c++
+// Using dot (.) syntax here.
 namespace MyModule .guidelines("MISRA-C:2004")
 {
     // implementation
@@ -62,14 +63,15 @@ namespace MyModule .guidelines("MISRA-C:2004")
 **Variable Attribute Support (Key MVVM Feature)**:
 
 ```c++
-// Method 1: Direct attribute addition after variable name
+// Method 1: Direct attribute addition after variable name. Using dot (.) syntax here.
 bool visible
   .permission(rw)                          // mutable
+  .property()
   .onGet(notifyPropertyRead)
   .onSet(notifyPropertyChanged) = true;    // default is visible
 
-// Method 2
-bool visible .permission(rw).property() {  // mutable
+// Method 2: Using colon (:) syntax here.
+bool visible :permission(rw):property {    // mutable
   bool operator=(bool isVisible) {
     notifyPropertyChanged();
     return visible = isVisible;
@@ -92,11 +94,13 @@ if (visible)
 **Function Attribute Declarations**:
 
 ```c++
-void doMigration(int version) .async() {
+// Using colon (:) syntax here.
+void doMigration(int version) :async:permission(rwx) {
     // Function implementation
 }
 
-void doSomething(int action) .permission(rwx) {
+// Using dot (.) syntax here.
+void doSomething(int action)  .async().permission(rwx) {
     // Function implementation
 }
 ```
@@ -108,6 +112,7 @@ void doSomething(int action) .permission(rwx) {
 Imitating Rust's module system to reduce keyword count:
 
 ```c++
+// Using dot (.) syntax here.
 struct MyLib .module() {
     struct MyStruct1;
     struct MyStruct2;
@@ -119,7 +124,8 @@ struct MyLib .module() {
 Imitating Java's inheritance mechanism:
 
 ```c++
-struct Child .extend(Parent).implement(MyInterface) {
+// Using dot (.) syntax here.
+class Child .extend(Parent).implement(MyInterface) {
     // Class implementation
 };
 ```
